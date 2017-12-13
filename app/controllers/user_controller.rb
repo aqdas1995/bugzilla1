@@ -1,24 +1,15 @@
 class UserController < ApplicationController
   def signup
-    @user = User.new
-    
+    @user = User.new    
   end
   
   def create
     @user = User.new(user_params)
-    puts @user
 
     respond_to do |format|
       if @user.save
-        puts "User Saved"
         format.html { redirect_to @user, notice: 'User Saved'}
       else
-        puts @user.errors.any?
-        error_msg = "Errors: " + @user.errors.count.to_s + "\n"
-        @user.errors.full_messages.each do |msg|
-          error_msg += (msg + "\n")
-        end
-        puts error_msg
         format.html {render :signup}
       end  
     end  
@@ -28,13 +19,10 @@ class UserController < ApplicationController
   end
 
   def authentication
-    @exists = User.where('email like ? AND password like ?', params[:email], params[:password]).count
-    puts @exists.class
+    @exists = User.where('email = ? AND password = ?', params[:email], params[:password]).count
     if @exists == 1
-      @user_logged = User.where('email like ? AND password like ?', params[:email], params[:password])
-      puts @user_logged
+      @user_logged = User.where('email = ? AND password = ?', params[:email], params[:password])
     end
-    puts params[:email]
   end
 
   private

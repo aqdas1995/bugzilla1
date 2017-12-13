@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+
+  user_save_prohibited: "prohibited this user from being saved:"
