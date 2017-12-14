@@ -16,21 +16,21 @@
 
   <p>
     <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </p>
  <p>
     <%= form.label :email %><br>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: "form-control" %>
   </p>
   <p>
     <%= form.label :password %><br>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: "form-control" %>
   </p>
  <p>
     <%= form.label :user_type %><br>
-    <%= form.select :user_type, ['Manager', 'Developer', 'QA'] %>
+    <%= form.select :user_type, ['Manager', 'Developer', 'QA'], class: "form-control" %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit "Sign Up", class: "btn btn-primary"%>
   </p>
 <% end %>
