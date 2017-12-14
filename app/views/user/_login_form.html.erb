@@ -1,0 +1,11 @@
+<%= form_with scope: :login, local: true, url: login_path do |form| %>
+    <p>
+        <%= form.text_field :email, placeholder: "Email", class:"Center form-control" %>
+    </p>
+    <p>
+        <%= form.password_field :password, placeholder: "Password", class:"Center form-control" %>
+    </p>
+    <p>
+        <%= form.submit "Login", class: "btn btn-primary" %>
+    </p>
+<% end %>
