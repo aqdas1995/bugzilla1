@@ -1,0 +1,28 @@
+<div class="custom-form">
+  <div class="text-center" style="padding:50px 0">
+    <div class="logo">forgot password</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, id: "forgot-password-form", class: "text-left" }) do |f| %>
+      
+        <div class="etc-login-form">
+          <p>When you fill in your registered email address, you will be sent instructions on how to reset your password.</p>
+        </div>
+        <div class="login-form-main-message"><%= devise_error_messages! %></div>
+        <div class="main-login-form">
+          <div class="login-group">
+            <div class="form-group">
+              <label for="fp_email" class="sr-only">Email address</label>
+              <%= f.email_field :email, autofocus: true, class: "form-control", id:"fp_email", placeholder: "email address" %>
+            </div>
+          </div>
+          <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+        </div>
+        <div class="etc-login-form">
+          <%= render "devise/shared/links" %>
+        </div>
+      <% end %>
+    </div>
+    <!-- end:Main Form -->
+  </div>
+</div>
