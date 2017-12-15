@@ -15,7 +15,7 @@
  *= require bootstrap
  *= require freelancer
  *= require magnific-popup
- *= require forms
+ *= require forms_styles
  *= require_tree .
  *= require_self
  */

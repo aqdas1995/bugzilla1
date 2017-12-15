@@ -18,6 +18,6 @@
 //= require jqBootstrapValidation
 //= require jquery.magnific-popup
 //= require contact_me
-//= require forms
+//= require forms_validations
 //= require turbolinks
 //= require_tree .
