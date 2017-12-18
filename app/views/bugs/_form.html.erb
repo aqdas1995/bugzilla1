@@ -1,0 +1,42 @@
+<%= form_with(model: [project, bug], local: true) do |form| %>
+    <% if bug.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(bug.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+            <ul>
+                <% project.errors.full_messages.each do |message| %>
+                    <li>
+                        <%= message %>
+                    </li>
+                    <% end %>
+            </ul>
+        </div>
+        <% end %>
+
+    <div class="field">
+        <%= form.label :title %>
+            <%= form.text_field :title, id: :bug_title %>
+    </div>
+
+    <div class="field">
+        <%= form.label :deadline %>
+            <%= form.date_field :deadline, id: :bug_deadline %>
+    </div>
+
+    <div class="field">
+        <%= form.label :bug_type %>
+            <%= form.select :bug_type,["Feature","Bug"], {}, id: :bug_type %>
+    </div>
+
+    <div class="field">
+        <%= form.label :status %>
+            <%= form.select :status,["New","Started", "Resolved"], {}, id: :bug_status %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>

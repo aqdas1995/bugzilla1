@@ -1,30 +1,13 @@
 class BugsController < ApplicationController
-  before_action :set_bug, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:new, :create, :index]
+  before_action :set_bug, only: [:show, :resolve]
 
-  # GET /bugs
-  # GET /bugs.json
-  def index
-    @bugs = Bug.all
-  end
-
-  # GET /bugs/1
-  # GET /bugs/1.json
-  def show
-  end
-
-  # GET /bugs/new
   def new
-    @bug = Bug.new
+    @bug = @project.bugs.build
   end
 
-  # GET /bugs/1/edit
-  def edit
-  end
-
-  # POST /bugs
-  # POST /bugs.json
   def create
-    @bug = Bug.new(bug_params)
+    @bug = @project.bugs.build(bug_params)
 
     respond_to do |format|
       if @bug.save
@@ -37,38 +20,40 @@ class BugsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bugs/1
-  # PATCH/PUT /bugs/1.json
-  def update
-    respond_to do |format|
-      if @bug.update(bug_params)
-        format.html { redirect_to @bug, notice: 'Bug was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bug }
-      else
-        format.html { render :edit }
-        format.json { render json: @bug.errors, status: :unprocessable_entity }
-      end
-    end
+  def show
+    
   end
 
-  # DELETE /bugs/1
-  # DELETE /bugs/1.json
-  def destroy
-    @bug.destroy
-    respond_to do |format|
-      format.html { redirect_to bugs_url, notice: 'Bug was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def unassign
+    BugUser.find(params[:bug_user_id]).destroy
+  end
+
+  def assign
+    @bug_user = BugUser.create(assign_params)
+  end
+
+  def resolve
+    @bug.update(status: I18n.t('resolved'))
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_bug
       @bug = Bug.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def bug_params
-      params.require(:bug).permit(:user_id, :title, :deadline, :type, :status)
+      params.require(:bug).permit(:user_id, :title, :deadline, :bug_type, :status)
+    end
+
+    def assign_params
+      params.permit(:user_id, :bug_id)
+    end
+
+    def unassign_params
+      params.permit(:bug_user_id)
     end
 end
