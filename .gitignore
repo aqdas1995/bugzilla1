@@ -17,3 +17,6 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ingnore public and all files in the hierarchy
+public/
