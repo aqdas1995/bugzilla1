@@ -1,6 +1,23 @@
 Rails.application.routes.draw do
+  get 'bug_user/assign'
+
+  get 'bugs/new'
+
+  get 'bug/new'
+
+  get 'projects/index'
+
   get 'dummy/index'
-  root 'dummy#index'
+  root 'projects#index'
+
+  resources :projects do
+    resources :bugs, shallow: true
+  end
+
+  post 'bugs/assign'
+  post 'bugs/unassign'
+  post 'bugs/resolve'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',

@@ -1,0 +1,2 @@
+module BugUserHelper
+end
