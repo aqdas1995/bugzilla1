@@ -7,4 +7,6 @@ class Bug < ApplicationRecord
   validates :deadline, presence: true
   validates :bug_type, presence: true
   validates :status, presence: true
+
+  mount_uploader :image, ScreenshotUploader
 end

@@ -61,5 +61,8 @@ gem "font-awesome-rails"
 gem 'jquery-easing-rails'
 gem 'jquery-rails'
 
-# Carrierwaves provides a simple and extremely flexible way to upload files.
+# Carrierwaves provides a simple and extremely flexible way to upload files.  
 gem 'carrierwave', '~> 1.0'
+
+# Helper gem for Carrierwaves
+gem "rmagick"

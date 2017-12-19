@@ -1,4 +1,4 @@
-<%= form_with(model: [project, bug], local: true) do |form| %>
+<%= form_with(model: [project, bug], local: true, multipart: true) do |form| %>
     <% if bug.errors.any? %>
         <div id="error_explanation">
             <h2>
@@ -32,6 +32,11 @@
     <div class="field">
         <%= form.label :status %>
             <%= form.select :status,["New","Started", "Resolved"], {}, id: :bug_status %>
+    </div>
+
+    <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image %>
     </div>
 
     <%= form.hidden_field :user_id, value: current_user.id %>

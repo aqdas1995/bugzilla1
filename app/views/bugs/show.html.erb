@@ -6,6 +6,9 @@
         <h3>Deadline: <em><%= @bug.deadline %></em></h3>
         <h3>Status: <em><%= @bug.status %></em></h3>
     </section>
+    <section class="col-lg-5">
+        <%= image_tag @bug.image_url(:thumb) if @bug.image? %>
+    </section>
 
     <table class="table users-table table-striped">
         <thead>

@@ -46,7 +46,7 @@ class BugsController < ApplicationController
     end
 
     def bug_params
-      params.require(:bug).permit(:user_id, :title, :deadline, :bug_type, :status)
+      params.require(:bug).permit(:user_id, :title, :deadline, :bug_type, :status, :image)
     end
 
     def assign_params
