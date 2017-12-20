@@ -80,6 +80,10 @@ section {
     background-color: rgba(33, 37, 41, 0.5);
     line-height: 3.1rem; }
 
+#notice i {
+  margin-right: 1.5%;
+}
+
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -128,6 +132,11 @@ section {
     #mainNav.navbar-shrink .navbar-brand {
       font-size: 1.5em; } }
 
+#body {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
 header.masthead {
   padding-top: calc(6rem + 72px);
   padding-bottom: 6rem; }
@@ -139,6 +148,10 @@ header.masthead {
     font-family: 'Lato'; }
 
 @media (min-width: 992px) {
+  #body {
+    padding-top: 106px;
+    padding-bottom: 96px;
+  }
   header.masthead {
     padding-top: calc(6rem + 106px);
     padding-bottom: 6rem; }
@@ -248,7 +261,11 @@ form .row:first-child .floating-label-form-group {
   color: #fff; }
 
 .copyright {
-  background-color: #1a252f; }
+  background-color: #1a252f;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+ }
 
 a {
   color: #18BC9C; }

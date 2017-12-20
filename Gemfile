@@ -66,3 +66,6 @@ gem 'carrierwave', '~> 1.0'
 
 # Helper gem for Carrierwaves
 gem "rmagick"
+
+# Pundit provides roles auth using policies
+gem "pundit"

@@ -26,17 +26,22 @@
     <% if user_signed_in? %>
 
       <%= render "layouts/nav" %>
-      <%= yield %>
+      <div class="container" id="body">
+        <% if notice %>
+            <p id="notice">
+                <i class="fa fa-exclamation-triangle"> </i><%= notice %>
+            </p>
+        <% end %>
+        <%= yield %>
+      </div>
       <%= render "layouts/footer" %>
 
     <% else %>
 
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-
       <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
+        <p id="notice">
+          <i class="fa fa-exclamation-triangle"> </i><%= alert %>
+        </p>
       <% end %>
 
       <%= yield %>

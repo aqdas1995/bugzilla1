@@ -1,13 +1,15 @@
 class BugsController < ApplicationController
   before_action :set_project, only: [:new, :create, :index]
-  before_action :set_bug, only: [:show, :resolve]
+  before_action :set_bug, only: [:show, :resolve, :assign, :assignable_users]
 
   def new
     @bug = @project.bugs.build
+    authorize @bug, :man_sqa?
   end
 
   def create
     @bug = @project.bugs.build(bug_params)
+    authorize @bug, :man_sqa?
 
     respond_to do |format|
       if @bug.save
@@ -20,20 +22,32 @@ class BugsController < ApplicationController
     end
   end
 
-  def show
-    
+  def unassign
+    authorize @bug, :dev?
+    BugUser.find(params[:bug_user_id]).destroy
+    flash[:notice] = "User sucessfully assigned to the bug"
   end
 
-  def unassign
-    BugUser.find(params[:bug_user_id]).destroy
+  def assignable_users
+    authorize @bug, :manager?
+    @users = User.where(user_type: 'Developer')
   end
 
   def assign
-    @bug_user = BugUser.create(assign_params)
+    authorize @bug, :man_dev?
+    check = BugUser.find_by(user_id: params[:user_id], bug_id: params[:bug_id])
+    if check == nil
+      @bug_user = BugUser.create(assign_params)
+      flash[:notice] = "User sucessfully assigned to the bug"
+    else
+      flash[:notice] = "User already added to the bug"
+    end
   end
 
   def resolve
+    authorize @bug, :dev?
     @bug.update(status: I18n.t('resolved'))
+    flash[:notice] = "User sucessfully assigned to the bug"
   end
 
   private
