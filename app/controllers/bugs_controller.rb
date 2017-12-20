@@ -22,13 +22,10 @@ class BugsController < ApplicationController
     end
   end
 
-  def show
-    
-  end
-
   def unassign
     authorize @bug, :dev?
     BugUser.find(params[:bug_user_id]).destroy
+    flash[:notice] = "User sucessfully assigned to the bug"
   end
 
   def assignable_users
@@ -50,6 +47,7 @@ class BugsController < ApplicationController
   def resolve
     authorize @bug, :dev?
     @bug.update(status: I18n.t('resolved'))
+    flash[:notice] = "User sucessfully assigned to the bug"
   end
 
   private

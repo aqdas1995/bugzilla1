@@ -102,7 +102,7 @@
                     <% end %>
                 </td>
                 <% if policy(bug).manager? %>
-                    <td><%= link_to 'Assign', bug_assignable_users_path, class: "btn btn-primary btn-sm" %></td>
+                    <td><%= link_to 'Assign', assignable_users_bug_path(bug.id), class: "btn btn-primary btn-sm" %></td>
                 <% elsif policy(bug).dev? %>
                     <td>
                         <button class="btn btn-primary btn-sm" onclick="AssignFunc('<%= current_user.id %>', '<%= bug.id %>', '<%= @project.id %>')">Assign</button>

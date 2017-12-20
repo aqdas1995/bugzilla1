@@ -134,6 +134,7 @@ section {
 
 #body {
   padding-top: 72px;
+  padding-bottom: 72px;
 }
 
 header.masthead {
@@ -149,6 +150,7 @@ header.masthead {
 @media (min-width: 992px) {
   #body {
     padding-top: 106px;
+    padding-bottom: 96px;
   }
   header.masthead {
     padding-top: calc(6rem + 106px);

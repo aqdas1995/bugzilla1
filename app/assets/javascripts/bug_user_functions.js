@@ -1,7 +1,7 @@
 function AssignFunc(user, bug) {
     $.ajax({
         type: 'POST',
-        url: '/bugs/assign',
+        url: '/bugs/'+ bug +'/assign',
         data: { user_id: user, bug_id: bug, id: bug },
         success: function (fnotice) {
             location.reload();
@@ -15,7 +15,7 @@ function AssignFunc(user, bug) {
 function removeUser(bug_user) {
     $.ajax({
         type: 'POST',
-        url: '/bugs/unassign',
+        url: '/bugs/' + bug +'/unassign',
         data: { bug_user_id: bug_user },
         success: function () {
             location.reload();
@@ -29,7 +29,7 @@ function removeUser(bug_user) {
 function resolveBug(bug) {
     $.ajax({
         type: 'POST',
-        url: '/bugs/resolve',
+        url: '/bugs/' + bug +'/resolve',
         data: { id: bug },
         success: function () {
             location.reload();
