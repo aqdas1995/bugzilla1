@@ -1,21 +1,21 @@
 class BugPolicy < ApplicationPolicy
   attr_reader :user, :bug
 
-  def initialize (user, bug)
+  def initialize(user, bug)
     @user = user
     @bug = bug
   end
 
   def manager?
-    @user.user_type == 'Manager' ? true : false
+    @user.user_type == 'Manager'
   end
 
   def sqa?
-    @user.user_type == 'SQA' ? true : false
+    @user.user_type == 'SQA'
   end
 
   def dev?
-    @user.user_type == 'Developer' ? true : false
+    @user.user_type == 'Developer'
   end
 
   def man_sqa?
@@ -29,9 +29,8 @@ class BugPolicy < ApplicationPolicy
   def dev_sqa?
     sqa? || dev?
   end
-  
+
   class Scope < Scope
-    def resolve
-    end
+    def resolve; end
   end
 end
