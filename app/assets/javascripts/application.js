@@ -19,7 +19,7 @@
 //= require jquery.magnific-popup
 //= require contact_me
 //= require forms_validations
-//= require custom
+//= require function_scripts
 //= require turbolinks
 //= require_tree .
 

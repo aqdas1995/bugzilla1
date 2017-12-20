@@ -2,16 +2,18 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project)
+    
   end
 
   def new
     @project = Project.new
+    authorize @project, :manager?
   end
 
   def create
     @project = Project.new(project_params)
-
+    authorize @project, :manager?
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -23,7 +25,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    authorize @project, :manager?
+  end
+
   def update
+    authorize @project, :manager?
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -36,6 +43,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project, :manager?
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }

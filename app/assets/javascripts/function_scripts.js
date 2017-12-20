@@ -1,9 +1,12 @@
-function AssignFunc(user, bug, project) {
+function AssignFunc(user, bug) {
     $.ajax({
         type: 'POST',
         url: '/bugs/assign',
-        data: { user_id: user, bug_id: bug, project_id: project },
-        success: function () {
+        data: { user_id: user, bug_id: bug, id: bug },
+        success: function (fnotice) {
+            location.reload();
+        },
+        error: function (response){
             location.reload();
         }
     });
@@ -16,7 +19,10 @@ function removeUser(bug_user) {
         data: { bug_user_id: bug_user },
         success: function () {
             location.reload();
-        }
+        },
+        error: function () {
+            location.reload();
+        } 
     });
 }
 
@@ -27,6 +33,15 @@ function resolveBug(bug) {
         data: { id: bug },
         success: function () {
             location.reload();
-        }
+        },
+        error: function () {
+            location.reload();
+        } 
     });
 }
+
+$(document).ready(function () {
+    setTimeout(function () {
+        $('#notice').slideUp("slow");
+    }, 4000);
+})

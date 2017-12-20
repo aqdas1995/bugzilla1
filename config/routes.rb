@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post 'bugs/assign'
   post 'bugs/unassign'
   post 'bugs/resolve'
+  get 'bugs/:id/assignable_users', to: 'bugs#assignable_users', as: 'bug_assignable_users'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
