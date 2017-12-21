@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  # Serve websocket cable request in-process
+  mount ActionCable.server => '/cable'
+
+  get 'rooms/show'
+
   root 'projects#index'
 
   resources :projects do
