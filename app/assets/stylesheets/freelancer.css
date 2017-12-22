@@ -262,10 +262,19 @@ form .row:first-child .floating-label-form-group {
 
 .copyright {
   background-color: #1a252f;
+ }
+
+#fixed {
   position: fixed;
   bottom: 0;
   width: 100%;
- }
+}
+
+#bottom-fixed {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 a {
   color: #18BC9C; }

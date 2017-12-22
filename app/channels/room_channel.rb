@@ -8,6 +8,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    ActionCable.server.broadcast 'room_channel', message: data['message']
+    @msg = Message.create(content: data['message'], user_id: data['user'], conversation_id: data['conversation'])
+    ActionCable.server.broadcast 'room_channel', message: @msg.content, user: @msg.user.name, time: @msg.created_at.to_s(:short), identity: data['conversation'] 
   end
 end

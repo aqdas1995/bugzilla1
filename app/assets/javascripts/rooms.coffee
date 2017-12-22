@@ -10,16 +10,34 @@ App.room = App.cable.subscriptions.create "RoomChannel",
         # Called when the subscription has been terminated by the server 
 
     received: (data) -> 
-        messages = document.getElementById('messages')
-        messages.innerHTML += '<div class="message"><p>' + data['message'] + '</p></div>'
+        identity = document.getElementById('converation-title').getAttribute('data-identity')
+        if identity == data['identity']
+            messages = document.getElementById('messages')
+            new_msg = '<div class="msg">
+                            <div class="media-body">
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i>' + data['time'] + '</small>
+
+                                <h5 class="media-heading">' + data['user'] + '</h5>
+                                <small class="col-sm-11">' + data['message'] + '</small>
+                            </div>
+                        </div>'
+            #messages.innerHTML += '<div class="message"><p>' + data['message'] + '</p></div>'
+            existing = messages.innerHTML
+            messages.innerHTML = new_msg + existing
         
 
-    speak: (message) -> 
-        @perform 'speak', message: message
+    speak: (message, user, conversation) -> 
+        @perform 'speak', message: message, user: user, conversation: conversation
 
     $(document).ready ->
-        $('#send').click ->
-            message = document.getElementById('message').value
-            App.room.speak message
+        $('#Messages').toggleClass 'col-sm-12 col-sm-9' 
+        main_div = document.getElementById('body')
+        if main_div.className == 'container'
+            main_div.className += ' fill'
+        
+        $('#send1').click ->
+            message = document.getElementById('message')
+            App.room.speak message.value
+            message.value = ''
             return
         return

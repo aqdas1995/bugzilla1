@@ -1,0 +1,12 @@
+<div id="conv-adder" class="modal">
+
+  <!-- Modal content -->
+  <div id="conversation-adder" class="modal-content">
+    <span id="close" class="close">&times;</span>
+    <div class="form-group">
+        <input class="form-control" id="conversation-name" placeholder="Conversation Name"/>
+    </div>
+    <button class="btn btn-primary" onclick="addConversation('<%= current_user.id %>')">Create Conversation</button>
+  </div>
+
+</div>
