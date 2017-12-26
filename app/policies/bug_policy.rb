@@ -6,6 +6,20 @@ class BugPolicy < ApplicationPolicy
     @bug = bug
   end
 
+  def own_project?
+    manager? && @bug.project.user.id == @user.id
+  end
+
+  def create?
+    if man_sqa?
+      if manager?
+        @bug.project.user.id == @user.id
+      else
+        true
+      end
+    end
+  end
+
   def manager?
     @user.user_type == 'Manager'
   end

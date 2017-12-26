@@ -6,7 +6,9 @@ class ProjectPolicy < ApplicationPolicy
     @project = project
   end
 
-  def index?; end
+  def edit_update_destroy?
+    manager? && @project.user.id == @user.id
+  end
 
   def manager?
     @user.user_type == 'Manager'

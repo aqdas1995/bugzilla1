@@ -44,7 +44,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Bugs</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -54,9 +53,11 @@
                 <td><%= bu.user.name %></td>
                 <td><%= bu.user.email %></td>
                 <td><%= bu.bug.title %></td>
-                <td>
-                    <button class="btn btn-danger btn-sm" onclick="removeUser('<%= bu.id %>')">Remove</button>
-                </td>
+                <% if policy(bug).own_project? %>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="removeUser('<%= bu.id %>')">Remove</button>
+                    </td>
+                <% end %>
             </tr>
             <% end %>
         <% end %>
@@ -79,7 +80,7 @@
             <th>Deadline</th>
             <th>Status</th>
             <th colspan="3">
-                <% if policy(@project).man_sqa? %>
+                <% if policy(@project).create? %>
                     <%= link_to 'Add Bug', new_project_bug_path(@project), class: "btn btn-primary btn-sm" %>
                 <% end %>
             </th>

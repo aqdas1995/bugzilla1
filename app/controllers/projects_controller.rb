@@ -25,11 +25,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    authorize @project, :manager?
+    authorize @project, :edit_update_destroy?
   end
 
   def update
-    authorize @project, :manager?
+    authorize @project, :edit_update_destroy?
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    authorize @project, :manager?
+    authorize @project, :edit_update_destroy?
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }

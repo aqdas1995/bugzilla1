@@ -9,7 +9,7 @@ class BugsController < ApplicationController
 
   def create
     @bug = @project.bugs.build(bug_params)
-    authorize @bug, :man_sqa?
+    authorize @bug
     respond_to do |format|
       if @bug.save
         format.html { redirect_to @bug, notice: 'Bug was successfully created.' }

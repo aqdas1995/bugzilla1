@@ -36,7 +36,7 @@
                         <%= link_to 'Details', project, class: "btn btn-primary btn-sm"%>
                     </td>
 
-                    <% if policy(project).manager?%>
+                    <% if policy(project).edit_update_destroy?%>
                         <td>
                             <%= link_to 'Edit', edit_project_path(project), class: "btn btn-warning btn-sm" %>
                         </td>                    
