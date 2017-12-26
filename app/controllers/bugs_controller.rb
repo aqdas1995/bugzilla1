@@ -1,6 +1,6 @@
 class BugsController < ApplicationController
   before_action :set_project, only: %i[new create index]
-  before_action :set_bug, only: %i[show resolve assign assignable_users]
+  before_action :set_bug, only: %i[show resolve start assign assignable_users]
 
   def new
     @bug = @project.bugs.build
@@ -46,7 +46,11 @@ class BugsController < ApplicationController
   def resolve
     authorize @bug, :dev?
     @bug.update(status: I18n.t('resolved'))
-    flash[:notice] = 'User sucessfully assigned to the bug'
+  end
+
+  def start
+    authorize @bug, :dev?
+    @bug.update(status: 'started')
   end
 
   private

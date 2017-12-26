@@ -92,13 +92,33 @@
                 <td><%= bug.title %></td>
                 <td><%= bug.bug_type %></td>
                 <td><%= bug.deadline %></td>
-                <td><%= bug.status %></td>
+                <% if bug.status == 'resolved' %>
+                    <% if bug.bug_type == 'Feature' %>
+                        <td>Completed</td>
+                    <% else %>
+                        <td>Resolved</td>
+                    <% end %>
+                <% else %>
+                    <td><%= bug.status %></td>
+                <% end %>
                 <td><%= link_to 'Show', bug_path, class: "btn btn-primary btn-sm" %></td>
                 <td>
-                    <% if bug.status != I18n.t('resolved') %>
-                        <button class="btn btn-warning btn-sm" onclick="resolveBug('<%= bug.id %>')">Resolve</button>
+                    <% if bug.status == 'started' || bug.status == 'resolved' %>
+                        <% if bug.bug_type != 'Feature' %>
+                            <% if bug.status != I18n.t('resolved') %>
+                                <button class="btn btn-warning btn-sm" onclick="resolveBug('<%= bug.id %>')">Resolve</button>
+                            <% else %>
+                                <%= I18n.t('resolved') %>
+                            <% end %>
+                        <% else %>
+                            <% if bug.status != I18n.t('resolved') %>
+                                <button class="btn btn-warning btn-sm" onclick="resolveBug('<%= bug.id %>')">Complete</button>
+                            <% else %>
+                                <%= I18n.t('completed') %>
+                            <% end %>
+                        <% end %>
                     <% else %>
-                        <%= I18n.t('resolved') %>
+                        <button class="btn btn-warning btn-sm" onclick="startBug('<%= bug.id %>')">Start</button>
                     <% end %>
                 </td>
                 <% if policy(bug).manager? %>
