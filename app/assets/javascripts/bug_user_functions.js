@@ -40,6 +40,20 @@ function resolveBug(bug) {
     });
 }
 
+function startBug(bug){
+    $.ajax({
+        type: 'POST',
+        url: '/bugs/' + bug + '/start',
+        data: { id: bug },
+        success: function () {
+            location.reload();
+        },
+        error: function () {
+            location.reload();
+        }
+    });
+}
+
 $(document).ready(function () {
     setTimeout(function () {
         $('#notice').slideUp("slow");

@@ -32,6 +32,7 @@
 en:
   hello: "Hello world"
   resolved: "resolved"
+  completed: "completed"
   errors:
     messages:
       carrierwave_processing_error: failed to be processed

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :bugs, shallow: true do
       post :assign, on: :member
       post :resolve, on: :member
+      post :start, on: :member
       post :unassign, on: :member
       get :assignable_users, on: :member
     end
