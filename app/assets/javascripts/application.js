@@ -20,6 +20,8 @@
 //= require contact_me
 //= require forms_validations
 //= require bug_user_functions
+//= require conversation
+//= require cable
 //= require turbolinks
 //= require_tree .
 

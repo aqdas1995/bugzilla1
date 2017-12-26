@@ -16,6 +16,7 @@
  *= require freelancer
  *= require magnific-popup
  *= require forms_styles
+ *= require chat
  *= require_tree .
  *= require_self
  */

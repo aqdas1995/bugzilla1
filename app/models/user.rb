@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_many :bugs, through: :bug_users
   has_many :projects, through: :bug_users
   has_many :projects, dependent: :destroy
+  has_many :user_conversations
+  has_many :converations, through: :user_conversations
+  has_many :messages
 end

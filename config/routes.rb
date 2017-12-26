@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  # Serve websocket cable request in-process
+  mount ActionCable.server => '/cable'
+
+  get 'conversations/show'
+  post 'conversations/fetch_messages'
+  post 'conversations/fetch_user'
+  post 'conversations/add_to_conversation'
+  post 'conversations/create'
+
   root 'projects#index'
 
   resources :projects do
